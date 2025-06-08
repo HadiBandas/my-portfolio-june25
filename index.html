@@ -335,11 +335,11 @@
             transform: rotate(0deg);
         }
         html[data-theme="dark"] .theme-toggle .sun-icon {
-            opacity: 100; 
+            opacity: 0; 
             transform: rotate(90deg);
         }
         .theme-toggle .moon-icon {
-            opacity: 100;
+            opacity: 0;
             transform: rotate(-90deg);
         }
         html[data-theme="dark"] .theme-toggle .moon-icon {
@@ -1015,12 +1015,22 @@
             backdrop-filter: blur(10px);
             z-index: 9999; /* Ensure it's on top */
             display: flex;
+            justify-content: center; /* Center flex items horizontally */
+            align-items: center; /* Center flex items vertically */
+            transition: all 0.8s ease;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* New container for centering content within the overlay */
+        .loading-content-container {
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: all 0.8s ease;
-            opacity: 1; /* Start visible */
-            visibility: visible; /* Start visible */
+            text-align: center;
+            z-index: 10;
+            padding: 1rem; /* Add padding for mobile */
         }
 
         .loading-text {
@@ -1040,7 +1050,8 @@
         }
 
         .progress-container {
-            width: 300px;
+            width: 80%; /* Use percentage for responsiveness */
+            max-width: 300px; /* Set a max-width */
             height: 6px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
@@ -1077,10 +1088,12 @@
 
         .loading-stats {
             display: flex;
-            gap: 4rem;
+            gap: 2rem; /* Adjusted gap for mobile */
             color: white;
             font-size: 0.9rem;
             opacity: 0.8;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            justify-content: center;
         }
 
         .stat-item {
@@ -1098,7 +1111,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 100; /* Ensure icons are above Three.js canvas */
+            z-index: 5; 
         }
 
         .icon {
@@ -1128,12 +1141,12 @@
         }
 
         #webgl-canvas {
-            position: fixed; /* Changed to fixed */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 9998; /* Below loading overlay content but above general page content */
+            z-index: 1; 
             display: block;
         }
 
@@ -1206,10 +1219,6 @@
                 grid-template-columns: repeat(3, 1fr); /* Three columns for achievements on larger screens */
             }
 
-            .portfolio-grid {
-                /* No grid needed here as it's a slider */
-                grid-template-columns: 1fr; 
-            }
             .awards-grid-container {
                 grid-template-columns: repeat(2, 1fr); /* Two columns for awards on larger screens */
             }
@@ -1255,21 +1264,17 @@
             <div class="icon" style="top: 40%; left: 80%; animation-delay: 1.5s;"><i class="fas fa-lightbulb"></i></div>
             <div class="icon" style="top: 60%; left: 5%; animation-delay: 2.5s;"><i class="fas fa-globe"></i></div>
         </div>
-
-        <div style="z-index: 10;">
+        <div class="loading-content-container">
             <div class="loading-text">
                 Mahasin Hadiyatulloh
                 <div style="font-size: 1rem; font-weight: 400; margin-top: 0.5rem; opacity: 0.8;">
                     Crafting Digital Excellence
                 </div>
             </div>
-            
             <div class="progress-container">
                 <div class="progress-bar" id="progress-bar"></div>
             </div>
-            
             <div class="percentage" id="percentage">0%</div>
-            
             <div class="loading-stats">
                 <div class="stat-item">
                     <div style="font-weight: 600;">Insight</div>
@@ -1332,9 +1337,9 @@
         <section id="home" class="hero-section">
             <div class="container reveal-container">
                 <div class="hero-content reveal-item">
-                    <h1 data-lang-key="hero_title">Personal Portfolio</h1>
+                    <h1 data-lang-key="hero_title"></h1>
                     <p class="name-subtitle">Mahasin Hadiyatulloh</p>
-                    <a href="#about" class="neumorphic-button" data-lang-key="hero_explore_button">Explore Now</a>
+                    <a href="#about" class="neumorphic-button" data-lang-key="hero_explore_button"></a>
                 </div>
                 <div class="hero-image-container reveal-item">
                     <img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/Hadi1.webp" alt="[Gambar Foto Profil]" class="profile-img-neumorphic">
@@ -1345,23 +1350,18 @@
         <!-- About Section -->
         <section id="about">
             <div class="container">
-                <h2 class="section-title reveal-item" data-lang-key="about_section_title">Mahasin Hadiyatulloh</h2>
+                <h2 class="section-title reveal-item" data-lang-key="about_section_title"></h2>
                 <div class="about-grid reveal-container">
                     <div class="about-image-card reveal-item">
                         <img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/Hadi2.webp" alt="[Gambar Pemasaran Kreatif]" class="profile-img-neumorphic">
                         <div class="neumorphic-card glass-panel quote-card">
-                            <blockquote data-lang-key="about_quote">
-                                "In a world where every data point tells a story, I transform insights into innovation and challenges into opportunities—bridging analytics and creativity to drive lasting growth."
-                            </blockquote>
+                            <blockquote data-lang-key="about_quote"></blockquote>
                         </div>
                     </div>
                     <div class="about-content reveal-item">
                         <span class="about-specialist-title neumorphic-card" data-lang-key="about_specialist_title">
-                            Freelance Marketing Manager & Data-Driven Marketing Specialist
                         </span>
-                        <p data-lang-key="about_description">
-                            I am a results-oriented marketing specialist with over three years of experience driving growth across both digital and offline channels. My expertise spans paid search, social media, and offline store marketing—enabling me to craft integrated strategies that boost brand visibility, engagement, and conversions. I excel at blending data-driven insights with creative solutions to achieve outstanding business results.
-                        </p>
+                        <p data-lang-key="about_description"></p>
                     </div>
                 </div>
             </div>
@@ -1370,23 +1370,19 @@
         <!-- Vision & Mission Section -->
         <section id="vision-mission">
             <div class="container">
-                <h2 class="section-title reveal-item" data-lang-key="vm_section_title">Vision & Mission</h2>
+                <h2 class="section-title reveal-item" data-lang-key="vm_section_title"></h2>
                 <div class="vm-grid reveal-container">
                     <div class="vm-image-container reveal-item">
                         <img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/Hadi3.webp" alt="[Gambar Visi & Misi]" class="profile-img-neumorphic vm-image-styling">
                     </div>
                     <div class="vm-content reveal-item">
                         <div class="neumorphic-card glass-panel">
-                            <h3 data-lang-key="vm_vision_title">Vision</h3>
-                            <p data-lang-key="vm_vision_description">
-                                Untuk menjembatani kesenjangan antara pemasaran digital dan tradisional dengan mengintegrasikan strategi kreatif dan wawasan berbasis data secara mulus. Saya membayangkan masa depan di mana setiap strategi pemasaran dapat terukur, dapat dipertanggungjawabkan, dan dioptimalkan untuk dampak yang maksimal.
-                            </p>
+                            <h3 data-lang-key="vm_vision_title"></h3>
+                            <p data-lang-key="vm_vision_description"></p>
                         </div>
                         <div class="neumorphic-card glass-panel">
-                            <h3 data-lang-key="vm_mission_title">Mission</h3>
-                            <p data-lang-key="vm_mission_description">
-                                Untuk memberdayakan bisnis dengan strategi khusus berbasis data yang mengoptimalkan kinerja pemasaran dan mendorong pertumbuhan berkelanjutan. Saya berdedikasi untuk membina kolaborasi lintas fungsi, meningkatkan efisiensi operasional, dan memberikan wawasan yang dapat ditindaklanjuti untuk mengubah tantangan bisnis menjadi peluang.
-                            </p>
+                            <h3 data-lang-key="vm_mission_title"></h3>
+                            <p data-lang-key="vm_mission_description"></p>
                         </div>
                     </div>
                 </div>
@@ -1394,9 +1390,9 @@
         </section>
 
         <!-- Achievements Section -->
-        <section id="Pengalaman Professional"> <!-- Section ID 'experience' maintained -->
+        <section id="experience">
             <div class="container">
-                <h2 class="section-title reveal-item" data-lang-key="achievements_section_title">My Achievements</h2>
+                <h2 class="section-title reveal-item" data-lang-key="achievements_section_title"></h2>
                 <div class="achievements-grid reveal-container">
                     <!-- Achievement 1 -->
                     <div class="achievement-card reveal-item gsap-hover-target" id="achievement1">
@@ -1431,7 +1427,7 @@
                     <!-- Achievement 6 -->
                     <div class="achievement-card reveal-item gsap-hover-target" id="achievement6">
                         <i class="fas fa-bullhorn achievement-icon"></i>
-                        <div class="counter stat-number" data-target="50">0</div>
+                        <div class="counter stat-number" data-target="2000000">0</div>
                         <div class="stat-label" data-lang-key="achievement6_label"></div>
                     </div>
                     <!-- Achievement 7 -->
@@ -1459,23 +1455,23 @@
         <!-- Work Value Section -->
         <section id="values">
             <div class="container">
-                <h2 class="section-title reveal-item" data-lang-key="values_section_title">Work Values</h2>
+                <h2 class="section-title reveal-item" data-lang-key="values_section_title"></h2>
                 <div class="values-grid reveal-container">
                     <div class="neumorphic-card reveal-item gsap-hover-target">
-                        <h3 data-lang-key="value1_title">Integrity</h3>
-                        <p data-lang-key="value1_description">Committing to honest and transparent practices in every project.</p>
+                        <h3 data-lang-key="value1_title"></h3>
+                        <p data-lang-key="value1_description"></p>
                     </div>
                     <div class="neumorphic-card reveal-item gsap-hover-target">
-                        <h3 data-lang-key="value2_title">Innovation</h3>
-                        <p data-lang-key="value2_description">Constantly seeking creative solutions and fresh approaches to marketing challenges.</p>
+                        <h3 data-lang-key="value2_title"></h3>
+                        <p data-lang-key="value2_description"></p>
                     </div>
                     <div class="neumorphic-card reveal-item gsap-hover-target">
-                        <h3 data-lang-key="value3_title">Collaboration</h3>
-                        <p data-lang-key="value3_description">Fostering strong teamwork and cross-functional communication to achieve collective success.</p>
+                        <h3 data-lang-key="value3_title"></h3>
+                        <p data-lang-key="value3_description"></p>
                     </div>
                     <div class="neumorphic-card reveal-item gsap-hover-target">
-                        <h3 data-lang-key="value4_title">Data-Driven Excellence</h3>
-                        <p data-lang-key="value4_description">Relying on precise analytics to inform decision-making and drive sustainable results.</p>
+                        <h3 data-lang-key="value4_title"></h3>
+                        <p data-lang-key="value4_description"></p>
                     </div>
                 </div>
             </div>
@@ -1484,37 +1480,37 @@
         <!-- Personal Skills Section -->
         <section id="skills">
             <div class="container">
-                <h2 class="section-title reveal-item" data-lang-key="pskills_section_title">Personal Skills</h2>
+                <h2 class="section-title reveal-item" data-lang-key="pskills_section_title"></h2>
                 <div class="skills-grid reveal-container">
                     <div class="skill-item neumorphic-card reveal-item gsap-hover-target">
-                        <i class="fas fa-rocket skill-icon"></i><p data-lang-key="pskill1">Initiative</p>
+                        <i class="fas fa-rocket skill-icon"></i><p data-lang-key="pskill1"></p>
                     </div>
                     <div class="skill-item neumorphic-card reveal-item gsap-hover-target">
-                        <i class="fas fa-shield-alt skill-icon"></i><p data-lang-key="pskill2">Integrity</p>
+                        <i class="fas fa-shield-alt skill-icon"></i><p data-lang-key="pskill2"></p>
                     </div>
                     <div class="skill-item neumorphic-card reveal-item gsap-hover-target">
-                        <i class="fas fa-handshake skill-icon"></i><p data-lang-key="pskill3">Collaboration</p>
+                        <i class="fas fa-handshake skill-icon"></i><p data-lang-key="pskill3"></p>
                     </div>
                     <div class="skill-item neumorphic-card reveal-item gsap-hover-target">
-                        <i class="fas fa-lightbulb skill-icon"></i><p data-lang-key="pskill4">Innovation</p>
+                        <i class="fas fa-lightbulb skill-icon"></i><p data-lang-key="pskill4"></p>
                     </div>
                     <div class="skill-item neumorphic-card reveal-item gsap-hover-target">
-                        <i class="fas fa-cogs skill-icon"></i><p data-lang-key="pskill5">Problem Solving</p>
+                        <i class="fas fa-cogs skill-icon"></i><p data-lang-key="pskill5"></p>
                     </div>
                     <div class="skill-item neumorphic-card reveal-item gsap-hover-target">
-                        <i class="fas fa-chess-knight skill-icon"></i><p data-lang-key="pskill6">Strategic Thinking</p>
+                        <i class="fas fa-chess-knight skill-icon"></i><p data-lang-key="pskill6"></p>
                     </div>
                     <div class="skill-item neumorphic-card reveal-item gsap-hover-target">
-                        <i class="fas fa-crown skill-icon"></i><p data-lang-key="pskill7">Leadership</p>
+                        <i class="fas fa-crown skill-icon"></i><p data-lang-key="pskill7"></p>
                     </div>
                     <div class="skill-item neumorphic-card reveal-item gsap-hover-target">
-                        <i class="fas fa-comments skill-icon"></i><p data-lang-key="pskill8">Effective Communication</p>
+                        <i class="fas fa-comments skill-icon"></i><p data-lang-key="pskill8"></p>
                     </div>
                     <div class="skill-item neumorphic-card reveal-item gsap-hover-target">
-                        <i class="fas fa-chart-bar skill-icon"></i><p data-lang-key="pskill9">Data-Driven Decision Making</p>
+                        <i class="fas fa-chart-bar skill-icon"></i><p data-lang-key="pskill9"></p>
                     </div>
                     <div class="skill-item neumorphic-card reveal-item gsap-hover-target">
-                        <i class="fas fa-sync-alt skill-icon"></i><p data-lang-key="pskill10">Adaptability</p>
+                        <i class="fas fa-sync-alt skill-icon"></i><p data-lang-key="pskill10"></p>
                     </div>
                 </div>
             </div>
@@ -1523,15 +1519,15 @@
         <!-- Technical Skills Section -->
         <section id="technical-skills">
             <div class="container">
-                <h2 class="section-title reveal-item" data-lang-key="tskills_section_title">Technical Skills</h2>
+                <h2 class="section-title reveal-item" data-lang-key="tskills_section_title"></h2>
                 <div class="tech-skills-tags reveal-container">
-                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill1">Paid Search & PPC</span>
-                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill2">Content Strategy</span>
-                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill3">Project Management</span>
-                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill4">Creative Tools</span>
-                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill5">Budgeting</span>
-                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill6">Data Analysis</span>
-                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill7">Data Visualization</span>
+                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill1"></span>
+                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill2"></span>
+                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill3"></span>
+                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill4"></span>
+                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill5"></span>
+                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill6"></span>
+                    <span class="project-skill-tag-neumorphic reveal-item" data-lang-key="tskill7"></span>
                 </div>
             </div>
         </section>
@@ -1539,7 +1535,7 @@
         <!-- Portfolio Section -->
         <section id="portfolio">
             <div class="container">
-                <h2 class="section-title reveal-item" data-lang-key="portfolio_section_title">Portfolio</h2>
+                <h2 class="section-title reveal-item" data-lang-key="portfolio_section_title"></h2>
                 <div class="portfolio-slider-container reveal-item">
                     <div class="portfolio-slider-track">
                         <!-- Project 1: Google Ads Optimization -->
@@ -1613,7 +1609,7 @@
         <!-- Scrolling Logos Section -->
         <section id="company-logos">
             <div class="container">
-                <h2 class="section-title reveal-item" data-lang-key="company_logos_title">Our Clients & Partners</h2>
+                <h2 class="section-title reveal-item" data-lang-key="company_logos_title"></h2>
                 <div class="logo-scroller neumorphic-card reveal-item">
                     <div class="logo-scroller-inner">
                         <!-- Duplicate content for seamless loop -->
@@ -1625,9 +1621,9 @@
                             <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/5.webp" alt="[Wheels]"></div>
                             <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/7.webp" alt="[Julia]"></div>
                             <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/6.webp" alt="[Gambar Logo Mitra G]"></div>
-                            <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/9.webp"></div>
-                            <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/8.webp"></div>
-                            <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/bstudios.webp"></div>
+                            <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/9.webp" alt="[Gambar Logo Mitra H]"></div>
+                            <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/8.webp" alt="[Gambar Logo Mitra I]"></div>
+                            <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/bstudios.webp" alt="[Gambar Logo B Studios]"></div>
                         </div>
                         <!-- Duplicated group for seamless scrolling -->
                         <div class="logo-group">
@@ -1638,9 +1634,9 @@
                             <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/5.webp" alt="[Wheels]"></div>
                             <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/7.webp" alt="[Julia]"></div>
                             <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/6.webp" alt="[Gambar Logo Mitra G]"></div>
-                            <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/9.webp"></div>
-                            <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/8.webp"></div>
-                            <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/bstudios.webp"></div>
+                            <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/9.webp" alt="[Gambar Logo Mitra H]"></div>
+                            <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/8.webp" alt="[Gambar Logo Mitra I]"></div>
+                            <div class="logo-item"><img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/bstudios.webp" alt="[Gambar Logo B Studios]"></div>
                         </div>
                     </div>
                 </div>
@@ -1650,77 +1646,80 @@
         <!-- Certifications & Awards Section -->
         <section id="certifications-awards">
             <div class="container">
-                <h2 class="section-title reveal-item" data-lang-key="cert_awards_section_title">Certifications & Awards</h2>
+                <h2 class="section-title reveal-item" data-lang-key="cert_awards_section_title"></h2>
 
-                <h3 class="subsection-title reveal-item" data-lang-key="cert_title">Certifications</h3>
+                <h3 class="subsection-title reveal-item" data-lang-key="cert_title"></h3>
                 <div class="cert-grid reveal-container">
                     <div class="neumorphic-card cert-item reveal-item gsap-hover-target">
                         <img src="https://placehold.co/40x40/F0F2F5/007bff?text=G" alt="[Gambar Logo Google]" class="cert-logo">
                         <div>
-                            <h4 data-lang-key="cert1_title">Google Search Ads Certification</h4>
-                            <p data-lang-key="cert1_year">2020</p>
+                            <h4 data-lang-key="cert1_title"></h4>
+                            <p data-lang-key="cert1_year"></p>
                         </div>
                     </div>
                     <div class="neumorphic-card cert-item reveal-item gsap-hover-target">
                         <img src="https://placehold.co/40x40/F0F2F5/007bff?text=M" alt="[Gambar Logo Microsoft]" class="cert-logo">
                         <div>
-                            <h4 data-lang-key="cert2_title">Microsoft Advertising</h4>
-                            <p data-lang-key="cert2_year">2021</p>
+                            <h4 data-lang-key="cert2_title"></h4>
+                            <p data-lang-key="cert2_year"></p>
                         </div>
                     </div>
                     <div class="neumorphic-card cert-item reveal-item gsap-hover-target">
                         <img src="https://placehold.co/40x40/F0F2F5/007bff?text=IAB" alt="[Gambar Logo IAB]" class="cert-logo">
                         <div>
-                            <h4 data-lang-key="cert3_title">IAB Digital Marketing and Media Foundations Certification</h4>
-                            <p data-lang-key="cert3_year">2020</p>
+                            <h4 data-lang-key="cert3_title"></h4>
+                            <p data-lang-key="cert3_year"></p>
                         </div>
                     </div>
                     <div class="neumorphic-card cert-item reveal-item gsap-hover-target">
                         <img src="https://placehold.co/40x40/F0F2F5/007bff?text=G" alt="[Gambar Logo Google]" class="cert-logo">
                         <div>
-                            <h4 data-lang-key="cert4_title">Google Foundation: Data, Data Everywhere</h4>
-                            <p data-lang-key="cert4_year">2021</p>
+                            <h4 data-lang-key="cert4_title"></h4>
+                            <p data-lang-key="cert4_year"></p>
                         </div>
                     </div>
                     <div class="neumorphic-card cert-item reveal-item gsap-hover-target">
                         <img src="https://placehold.co/40x40/F0F2F5/007bff?text=C" alt="[Gambar Logo Coursera]" class="cert-logo">
                         <div>
-                            <h4 data-lang-key="cert_coursera_title">Foundations of Digital Marketing and E-commerce (Coursera)</h4>
-                            <p data-lang-key="cert_coursera_year">Apr 2024 - Present</p>
+                            <h4 data-lang-key="cert_coursera_title"></h4>
+                            <p data-lang-key="cert_coursera_year"></p>
                         </div>
                     </div>
                     <div class="neumorphic-card cert-item reveal-item gsap-hover-target">
                         <img src="https://placehold.co/40x40/F0F2F5/007bff?text=RU" alt="[Gambar Logo Revo U]" class="cert-logo">
                         <div>
-                            <h4 data-lang-key="cert_revou_title">Intro to Digital marketing (Revo U Mini Course)</h4>
-                            <p data-lang-key="cert_revou_year">Sep 2023 - Present</p>
+                            <h4 data-lang-key="cert_revou_title"></h4>
+                            <p data-lang-key="cert_revou_year"></p>
                         </div>
                     </div>
                     <div class="neumorphic-card cert-item reveal-item gsap-hover-target">
                         <img src="https://placehold.co/40x40/F0F2F5/007bff?text=DA" alt="[Gambar Logo DEA]" class="cert-logo">
                         <div>
-                            <h4 data-lang-key="cert_dea_mentee_title">Mentee Masterclass (Digital Entrepreneurship Academy)</h4>
-                            <p data-lang-key="cert_dea_mentee_year">Jun 2023 - Present</p>
+                            <h4 data-lang-key="cert_dea_mentee_title"></h4>
+                            <p data-lang-key="cert_dea_mentee_year"></p>
                         </div>
                     </div>
                     <div class="neumorphic-card cert-item reveal-item gsap-hover-target">
                         <img src="https://placehold.co/40x40/F0F2F5/007bff?text=CS" alt="[Gambar Logo Cybersecurity]" class="cert-logo">
                         <div>
-                            <h4 data-lang-key="cert_dea_cyber_title">Advanced Cybersecurity for Entrepreneurs (Digital Entrepreneurship Academy)</h4>
-                            <p data-lang-key="cert_dea_cyber_year">Jun 2023 - Present</p>
+                            <h4 data-lang-key="cert_dea_cyber_title"></h4>
+                            <p data-lang-key="cert_dea_cyber_year"></p>
                         </div>
                     </div>
                     <div class="neumorphic-card cert-item reveal-item gsap-hover-target">
-                        <h4 data-lang-key="cert5_title">Many More</h4>
-                        <p data-lang-key="cert5_year">2024</p>
+                        <img src="https://placehold.co/40x40/F0F2F5/007bff?text=ETC" alt="[Gambar Logo Lainnya]" class="cert-logo">
+                        <div>
+                             <h4 data-lang-key="cert5_title"></h4>
+                             <p data-lang-key="cert5_year"></p>
+                        </div>
                     </div>
                 </div>
 
-                <h3 class="subsection-title reveal-item" data-lang-key="award_title">Awards</h3>
+                <h3 class="subsection-title reveal-item" data-lang-key="award_title"></h3>
                 <div class="awards-grid-container reveal-container">
                     <div class="award-card-neumorphic neumorphic-card award-item reveal-item gsap-hover-target">
-                        <h4 data-lang-key="award1_title">Employee of The Year Award 2023</h4>
-                        <p data-lang-key="award1_description">Outstanding Achievement at PT Jodamo Exchange. (2024)</p>
+                        <h4 data-lang-key="award1_title"></h4>
+                        <p data-lang-key="award1_description"></p>
                     </div>
                 </div>
             </div>
@@ -1729,12 +1728,12 @@
         <!-- Language Skills Section -->
         <section id="languages">
             <div class="container">
-                <h2 class="section-title reveal-item" data-lang-key="lang_section_title">Language Skills</h2>
+                <h2 class="section-title reveal-item" data-lang-key="lang_section_title"></h2>
                 <div class="lang-grid reveal-container">
                     <div class="neumorphic-card lang-item reveal-item gsap-hover-target">
                         <div>
-                            <h3 data-lang-key="lang1_title">Indonesian</h3>
-                            <p data-lang-key="lang1_level">Native</p>
+                            <h3 data-lang-key="lang1_title"></h3>
+                            <p data-lang-key="lang1_level"></p>
                         </div>
                         <div class="star-rating">
                             <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
@@ -1742,8 +1741,8 @@
                     </div>
                     <div class="neumorphic-card lang-item reveal-item gsap-hover-target">
                         <div>
-                            <h3 data-lang-key="lang2_title">English</h3>
-                            <p data-lang-key="lang2_level">B2 - Upper Intermediate</p>
+                            <h3 data-lang-key="lang2_title"></h3>
+                            <p data-lang-key="lang2_level"></p>
                         </div>
                         <div class="star-rating">
                             <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span class="empty-star">&#9733;</span>
@@ -1756,10 +1755,8 @@
         <!-- Contact Section -->
         <section id="contact">
             <div class="container contact-section-content reveal-container">
-                <h2 class="section-title reveal-item" data-lang-key="contact_title">Let's Work Together</h2>
-                <p class="contact-description reveal-item" data-lang-key="contact_description">
-                    I invite you to leverage my expertise to transform your marketing efforts and business operations. Whether you need to drive online growth, boost offline performance, or implement data-driven strategies, I offer tailored solutions that deliver measurable results.
-                </p>
+                <h2 class="section-title reveal-item" data-lang-key="contact_title"></h2>
+                <p class="contact-description reveal-item" data-lang-key="contact_description"></p>
                 <div class="social-links-container reveal-item neumorphic-card glass-panel">
                     <a href="tel:+6281220683254" class="social-icon-neumorphic gsap-hover-target" aria-label="Call me">
                         <i class="fas fa-phone"></i>
@@ -1771,14 +1768,14 @@
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
-                <p class="contact-address reveal-item" data-lang-key="contact_address">Jl. Banda no 11, Kota Bandung, West Java. 40115</p>
+                <p class="contact-address reveal-item" data-lang-key="contact_address"></p>
             </div>
         </section>
 
         <!-- Footer -->
         <footer>
             <div class="container">
-                <p data-lang-key="footer_text">&copy; 2024 Mahasin Hadiyatulloh. All Rights Reserved.</p>
+                <p data-lang-key="footer_text"></p>
             </div>
         </footer>
     </div> <!-- End of main-content-wrapper -->
@@ -1789,33 +1786,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     
-    <!-- Embedded main.js content -->
+    <!-- Embedded main.js content with updated copywriting -->
     <script>
         // Objek konten bahasa untuk dukungan multibahasa
         const langContent = {
             en: {
                 nav_about: "About",
-                nav_achievements: "Achievements", 
+                nav_achievements: "Achievements",
                 nav_skills: "Skills",
                 nav_portfolio: "Portfolio",
                 nav_certs_awards: "Certifications & Awards",
                 nav_contact: "Contact",
-                hero_title: "Data-Driven Marketing & Business Analysis", 
+                hero_title: "Transforming Data into Marketing & Business Impact",
                 hero_explore_button: "Explore Now",
-                about_section_title: "Mahasin Hadiyatulloh",
+                about_section_title: "About Me",
                 about_quote: '"In a world where every data point tells a story, I transform insights into innovation and challenges into opportunities—bridging analytics and creativity to drive lasting growth."',
-                about_specialist_title: "Freelance Marketing Manager, Data Strategist & Business Analyst", 
-                about_description: "I am a results-oriented professional with over three years of experience in data-driven marketing and business analysis, driving growth across digital and offline channels. My expertise spans paid search, social media, offline store marketing, and translating complex data into actionable business strategies. I excel at blending analytical insights with creative solutions to boost brand visibility, engagement, conversions, and achieve outstanding business results.", 
-                achievements_section_title: "My Achievements", 
+                about_specialist_title: "Freelance Marketing Manager, Data Strategist & Business Analyst",
+                about_description: "A results-oriented professional with over three years of experience in data-driven marketing and business analysis, driving growth across both digital and offline channels. My expertise spans paid search, social media, and offline store marketing, alongside a core skill in translating complex data into actionable business strategies. I excel at blending analytical insights with creative solutions to boost brand visibility, enhance engagement, increase conversions, and achieve outstanding business results.",
+                vm_section_title: "My Vision & Mission",
+                vm_vision_title: "Vision",
+                vm_vision_description: "To bridge the gap between digital and traditional marketing by seamlessly integrating creative strategy with data-driven insights. I envision a future where every marketing strategy is measurable, accountable, and optimized for maximum impact.",
+                vm_mission_title: "Mission",
+                vm_mission_description: "To empower businesses with tailored, data-driven strategies that optimize marketing performance and drive sustainable growth. I am dedicated to fostering cross-functional collaboration, enhancing operational efficiency, and delivering actionable insights that transform business challenges into opportunities.",
+                achievements_section_title: "Professional Achievements",
                 achievement1_label: "ROAS (Return on Ad Spend)",
-                achievement2_label: "Top Page Search Ads (on 2 years)",
-                achievement3_label: "Reporting Time Saved",
-                achievement4_label: "Organic Traffic Increase",
-                achievement5_label: "Conversion Rate from A/B Testing",
-                achievement6_label: "2.000.000 (Millions)++ Impressions from over 50+ Influencers", // Added ++
-                achievement7_label: "Profit from Voucher Campaign",
-                achievement8_label: "AoV Increase",
-                achievement9_label: "Successful Digital Campaigns++", // Added ++
+                achievement2_label: "Consistent Top-of-Page Rank for 2 Years",
+                achievement3_label: "Reduced Reporting Time",
+                achievement4_label: "Increase in Organic Traffic",
+                achievement5_label: "Conversion Uplift from A/B Testing",
+                achievement6_label: "Generated 2M+ Impressions via 50+ Influencers",
+                achievement7_label: "Profit Increase from Voucher Campaigns",
+                achievement8_label: "Increased Average Order Value (AOV)",
+                achievement9_label: "Executed 279+ Successful Digital Campaigns",
                 values_section_title: "Work Values",
                 value1_title: "Integrity",
                 value1_description: "Committing to honest and transparent practices in every project.",
@@ -1844,25 +1846,25 @@
                 tskill5: "Budgeting",
                 tskill6: "Data Analysis",
                 tskill7: "Data Visualization",
-                portfolio_section_title: "Portfolio",
+                portfolio_section_title: "Project Portfolio",
                 project1_name: "Performance Marketing Specialist – PT Mooi Sentra Wisata",
-                project1_results: "Results: ROAS +10.835%, Traffic +496%",
+                project1_results: "Key Results: ROAS +10,835%, Traffic +496%",
                 project1_tools: ["Google Ads", "Meta Ads", "Google Analytics"],
-                project1_short_description: "Initial challenge involved high ad costs with low conversions. The solution implemented was extensive Google Ads & Meta Ads campaign optimization with retargeting and bid adjustments. The direct impact was a significant ROAS increase and a measurable surge in traffic.",
+                project1_short_description: "<strong>Challenge:</strong> High advertising costs yielded low conversion rates. <br><strong>Solution:</strong> Executed a comprehensive optimization of Google & Meta Ads campaigns, focusing on strategic retargeting and precise bid adjustments. <br><strong>Impact:</strong> Achieved a significant increase in Return On Ad Spend (ROAS) and a substantial surge in website traffic.",
                 project2_name: "Integrated Marketing Operations System – Notion",
-                project2_results: "Results: Improved Collaboration, Operational Efficiency",
+                project2_results: "Key Results: Improved Collaboration, Operational Efficiency",
                 project2_tools: ["Notion", "Asana", "Google Workspace", "Slack"],
-                project2_short_description: "The initial challenge was a lack of a centralized platform for marketing project management. I developed an Integrated Marketing Operations System in Notion to streamline workflows. The impact was better team collaboration and vastly improved operational efficiency.",
+                project2_short_description: "<strong>Challenge:</strong> Disjointed project management due to the lack of a centralized platform. <br><strong>Solution:</strong> Designed and implemented a bespoke Integrated Marketing Operations System within Notion to unify and streamline all marketing workflows. <br><strong>Impact:</strong> Fostered seamless team collaboration and achieved a significant improvement in operational efficiency.",
                 project3_name: "Customer Journey Mapping & Optimization",
-                project3_results: "Results: Improved Conversion Rates, Enhanced User Experience",
+                project3_results: "Key Results: Improved Conversion Rates, Enhanced User Experience",
                 project3_tools: ["Figma", "Miro", "Hotjar", "Google Analytics"],
-                project3_short_description: "Led an initiative to map and optimize the end-to-end customer journey, identifying key friction points and implementing data-backed solutions. This resulted in improved conversion funnels and a more seamless user experience across digital touchpoints.",
-                project4_name: "Cross-Channel Voucher Wheels Loyalty Program", 
-                project4_results: "Results: Increased Customer Retention, Enhanced Engagement", 
-                project4_tools: ["CRM", "Gamification Platforms", "Omnichannel Marketing Tools", "Data Analytics"], 
-                project4_short_description: "Designed and implemented an innovative loyalty program using gamified 'voucher wheels' across online and offline channels. This initiative significantly boosted customer retention and engagement by offering personalized rewards and interactive experiences.", 
-                project_explore_link: "Explore Case Study", 
-                company_logos_title: "Our Clients & Partners",
+                project3_short_description: "<strong>Challenge:</strong> Identifying friction points in the user experience. <br><strong>Solution:</strong> Led an initiative to map and optimize the end-to-end customer journey, implementing data-backed solutions. <br><strong>Impact:</strong> Resulted in improved conversion funnels and a more seamless user experience across all digital touchpoints.",
+                project4_name: "Cross-Channel Voucher Wheels Loyalty Program",
+                project4_results: "Key Results: Increased Customer Retention, Enhanced Engagement",
+                project4_tools: ["CRM", "Gamification Platforms", "Omnichannel Marketing Tools", "Data Analytics"],
+                project4_short_description: "<strong>Challenge:</strong> Low customer retention and engagement. <br><strong>Solution:</strong> Designed and launched an innovative loyalty program using gamified 'voucher wheels' across online and offline channels. <br><strong>Impact:</strong> Significantly boosted customer retention by offering personalized, interactive reward experiences.",
+                project_explore_link: "Explore Case Study",
+                company_logos_title: "Clients & Partners",
                 cert_awards_section_title: "Certifications & Awards",
                 cert_title: "Certifications",
                 cert1_title: "Google Search Ads Certification",
@@ -1898,27 +1900,32 @@
             },
             id: {
                 nav_about: "Tentang",
-                nav_achievements: "Pencapaian", 
+                nav_achievements: "Pencapaian",
                 nav_skills: "Keahlian",
                 nav_portfolio: "Portofolio",
                 nav_certs_awards: "Sertifikasi & Penghargaan",
                 nav_contact: "Kontak",
-                hero_title: "Pemasaran Berbasis Data & Analisis Bisnis", 
+                hero_title: "Mengubah Data Menjadi Dampak Pemasaran & Bisnis",
                 hero_explore_button: "Jelajahi Sekarang",
-                about_section_title: "Mahasin Hadiyatulloh",
-                about_quote: '"Dalam dunia di mana setiap titik data menceritakan sebuah kisah, saya mengubah wawasan menjadi inovasi dan tantangan menjadi peluang—menjembatani analitik dan kreativitas untuk mendorong pertumbuhan yang langgeng."',
-                about_specialist_title: "Freelance Marketing Manager, Data Strategist & Business Analyst", 
-                about_description: "Saya adalah profesional yang berorientasi pada hasil dengan lebih dari tiga tahun pengalaman dalam pemasaran berbasis data dan analisis bisnis, mendorong pertumbuhan di seluruh saluran digital dan offline. Keahlian saya mencakup pencarian berbayar, media sosial, pemasaran toko offline, dan menerjemahkan data kompleks menjadi strategi bisnis yang dapat ditindaklanjuti. Saya unggul dalam memadukan wawasan analitis dengan solusi kreatif untuk meningkatkan visibilitas merek, keterlibatan, konversi, dan mencapai hasil bisnis yang luar biasa.", 
-                achievements_section_title: "Pencapaian Saya", 
+                about_section_title: "Tentang Saya",
+                about_quote: '"Di dunia di mana setiap data menyimpan cerita, saya mengubah wawasan menjadi inovasi dan tantangan menjadi peluang—menjembatani analitik dan kreativitas untuk mendorong pertumbuhan berkelanjutan."',
+                about_specialist_title: "Freelance Marketing Manager, Data Strategist & Business Analyst",
+                about_description: "Seorang profesional berorientasi hasil dengan pengalaman lebih dari tiga tahun di bidang pemasaran berbasis data dan analisis bisnis, yang mendorong pertumbuhan di saluran digital maupun offline. Keahlian saya mencakup paid search, media sosial, dan pemasaran toko offline, serta kemampuan utama dalam menerjemahkan data kompleks menjadi strategi bisnis yang dapat ditindaklanjuti. Saya unggul dalam memadukan wawasan analitis dengan solusi kreatif untuk meningkatkan visibilitas merek, memperkuat keterlibatan, meningkatkan konversi, dan mencapai hasil bisnis yang luar biasa.",
+                vm_section_title: "Visi & Misi Saya",
+                vm_vision_title: "Visi",
+                vm_vision_description: "Menjembatani kesenjangan antara pemasaran digital dan tradisional dengan mengintegrasikan strategi kreatif dan wawasan berbasis data secara sinergis. Visi saya adalah masa depan di mana setiap strategi pemasaran terukur, akuntabel, dan teroptimalkan untuk dampak maksimal.",
+                vm_mission_title: "Misi",
+                vm_mission_description: "Memberdayakan bisnis melalui strategi berbasis data yang dirancang khusus untuk mengoptimalkan kinerja pemasaran dan mendorong pertumbuhan berkelanjutan. Saya berdedikasi untuk membina kolaborasi lintas fungsi, meningkatkan efisiensi operasional, dan menyajikan wawasan yang dapat ditindaklanjuti untuk mengubah tantangan menjadi peluang.",
+                achievements_section_title: "Pencapaian Profesional",
                 achievement1_label: "ROAS (Return on Ad Spend)",
-                achievement2_label: "Iklan Halaman Teratas Google (dalam 2 tahun)",
-                achievement3_label: "Waktu Pelaporan Hemat",
-                achievement4_label: "Peningkatan Trafik Organik",
-                achievement5_label: "Tingkat Konversi dari A/B Testing",
-                achievement6_label: "2.000.000 (Juta)++ Tayangan dari 50+ Influencer ", // Added ++
-                achievement7_label: "Profit dari Kampanye Voucher",
-                achievement8_label: "Peningkatan AoV",
-                achievement9_label: "Kampanye Digital Sukses++", // Added ++
+                achievement2_label: "Peringkat Teratas Iklan Google Konsisten Selama 2 Tahun",
+                achievement3_label: "Pengurangan Waktu Pelaporan",
+                achievement4_label: "Peningkatan Lalu Lintas Organik",
+                achievement5_label: "Peningkatan Konversi dari A/B Testing",
+                achievement6_label: "Menghasilkan 2 Juta+ Tayangan melalui 50+ Influencer",
+                achievement7_label: "Peningkatan Profit dari Kampanye Voucher",
+                achievement8_label: "Peningkatan Nilai Pesanan Rata-Rata (AOV)",
+                achievement9_label: "Mengeksekusi 279+ Kampanye Digital Sukses",
                 values_section_title: "Nilai-Nilai Kerja",
                 value1_title: "Integritas",
                 value1_description: "Berkomitmen pada praktik yang jujur dan transparan dalam setiap proyek.",
@@ -1941,67 +1948,67 @@
                 pskill10: "Adaptabilitas",
                 tskills_section_title: "Keterampilan Teknis",
                 tskill1: "Paid Search & PPC",
-                tskill2: "Content Strategy",
-                tskill3: "Project Management",
-                tskill4: "Creative Tools",
-                tskill5: "Budgeting",
-                tskill6: "Data Analysis",
-                tskill7: "Data Visualization",
-                portfolio_section_title: "Portofolio",
+                tskill2: "Strategi Konten",
+                tskill3: "Manajemen Proyek",
+                tskill4: "Perangkat Kreatif",
+                tskill5: "Penganggaran",
+                tskill6: "Analisis Data",
+                tskill7: "Visualisasi Data",
+                portfolio_section_title: "Portofolio Proyek",
                 project1_name: "Performance Marketing Specialist – PT Mooi Sentra Wisata",
-                project1_results: "Hasil: ROAS +10.835%, Traffic +496%",
+                project1_results: "Hasil Utama: ROAS +10.835%, Lalu Lintas +496%",
                 project1_tools: ["Google Ads", "Meta Ads", "Google Analytics"],
-                project1_short_description: "Tantangan awal melibatkan biaya iklan yang tinggi dengan konversi rendah. Solusi yang diterapkan adalah optimasi kampanye Google Ads & Meta Ads secara ekstensif dengan penargetan ulang dan penyesuaian bidding. Dampak langsungnya adalah peningkatan ROAS yang signifikan dan lonjakan lalu lintas yang terukur.",
+                project1_short_description: "<strong>Tantangan:</strong> Biaya iklan tinggi namun tingkat konversi rendah. <br><strong>Solusi:</strong> Melakukan optimisasi komprehensif pada kampanye Google & Meta Ads, dengan fokus pada penargetan ulang strategis dan penyesuaian tawaran yang presisi. <br><strong>Dampak:</strong> Mencapai peningkatan Return On Ad Spend (ROAS) yang signifikan dan lonjakan lalu lintas situs web yang substansial.",
                 project2_name: "Sistem Operasi Pemasaran Terintegrasi – Notion",
-                project2_results: "Hasil: Peningkatan Kolaborasi, Efisiensi Operasional",
+                project2_results: "Hasil Utama: Peningkatan Kolaborasi, Efisiensi Operasional",
                 project2_tools: ["Notion", "Asana", "Google Workspace", "Slack"],
-                project2_short_description: "Tantangan awal adalah kurangnya platform terpusat untuk manajemen proyek pemasaran. Saya mengembangkan Sistem Operasi Pemasaran Terintegrasi di Notion untuk merampingkan alur kerja. Dampaknya adalah kolaborasi tim yang lebih baik dan efisiensi operasional yang meningkat secara drastis.",
+                project2_short_description: "<strong>Tantangan:</strong> Manajemen proyek tidak terpusat dan terfragmentasi. <br><strong>Solusi:</strong> Merancang dan mengimplementasikan Sistem Operasi Pemasaran Terintegrasi yang dibuat khusus di dalam Notion untuk menyatukan dan merampingkan semua alur kerja pemasaran. <br><strong>Dampak:</strong> Mendorong kolaborasi tim yang lancar dan mencapai peningkatan efisiensi operasional yang signifikan.",
                 project3_name: "Pemetaan & Optimasi Perjalanan Pelanggan",
-                project3_results: "Hasil: Peningkatan Tingkat Konversi, Pengalaman Pengguna yang Ditingkatkan",
+                project3_results: "Hasil Utama: Peningkatan Tingkat Konversi, Pengalaman Pengguna yang Lebih Baik",
                 project3_tools: ["Figma", "Miro", "Hotjar", "Google Analytics"],
-                project3_short_description: "Memimpin inisiatif untuk memetakan dan mengoptimalkan perjalanan pelanggan dari awal hingga akhir, mengidentifikasi titik-titik gesekan utama dan menerapkan solusi berbasis data. Ini menghasilkan peningkatan corong konversi dan pengalaman pengguna yang lebih mulus di seluruh titik sentuh digital.",
-                project4_name: "Program Loyalitas Roda Voucher Lintas Saluran", 
-                project4_results: "Hasil: Peningkatan Retensi Pelanggan, Keterlibatan yang Ditingkatkan", 
-                project4_tools: ["CRM", "Platform Gamifikasi", "Alat Pemasaran Omnichannel", "Analisis Data"], 
-                project4_short_description: "Merancang dan mengimplementasikan program loyalitas inovatif menggunakan 'roda voucher' yang digamifikasi di seluruh saluran online dan offline. Inisiatif ini secara signifikan meningkatkan retensi dan keterlibatan pelanggan dengan menawarkan hadiah yang dipersonalisasi dan pengalaman interaktif.", 
-                project_explore_link: "Jelajahi Studi Kasus", 
-                company_logos_title: "Klien & Mitra Kami",
+                project3_short_description: "<strong>Tantangan:</strong> Mengidentifikasi titik masalah dalam pengalaman pengguna. <br><strong>Solusi:</strong> Memimpin inisiatif untuk memetakan dan mengoptimalkan perjalanan pelanggan dari awal hingga akhir, menerapkan solusi berbasis data. <br><strong>Dampak:</strong> Menghasilkan corong konversi yang lebih baik dan pengalaman pengguna yang lebih mulus di seluruh titik sentuh digital.",
+                project4_name: "Program Loyalitas Roda Voucher Lintas Saluran",
+                project4_results: "Hasil Utama: Peningkatan Retensi Pelanggan, Keterlibatan yang Lebih Tinggi",
+                project4_tools: ["CRM", "Platform Gamifikasi", "Alat Pemasaran Omnichannel", "Analisis Data"],
+                project4_short_description: "<strong>Tantangan:</strong> Retensi dan keterlibatan pelanggan yang rendah. <br><strong>Solusi:</strong> Merancang dan meluncurkan program loyalitas inovatif menggunakan 'roda voucher' yang digamifikasi di berbagai saluran online dan offline. <br><strong>Dampak:</strong> Secara signifikan meningkatkan retensi pelanggan dengan menawarkan pengalaman hadiah yang interaktif dan dipersonalisasi.",
+                project_explore_link: "Lihat Studi Kasus",
+                company_logos_title: "Klien & Mitra",
                 cert_awards_section_title: "Sertifikasi & Penghargaan",
                 cert_title: "Sertifikasi",
-                cert1_title: "Google Search Ads Certification",
+                cert1_title: "Sertifikasi Iklan Google Penelusuran",
                 cert1_year: "2020",
                 cert2_title: "Microsoft Advertising",
                 cert2_year: "2021",
-                cert3_title: "IAB Digital Marketing and Media Foundations Certification",
+                cert3_title: "Sertifikasi Dasar-Dasar Pemasaran Digital dan Media IAB",
                 cert3_year: "2020",
                 cert4_title: "Google Foundation: Data, Data Everywhere",
                 cert4_year: "2021",
                 cert_coursera_title: "Foundations of Digital Marketing and E-commerce (Coursera)",
-                cert_coursera_year: "Apr 2024 - Present",
+                cert_coursera_year: "Apr 2024 - Sekarang",
                 cert_revou_title: "Intro to Digital marketing (Revo U Mini Course)",
-                cert_revou_year: "Sep 2023 - Present",
+                cert_revou_year: "Sep 2023 - Sekarang",
                 cert_dea_mentee_title: "Mentee Masterclass (Digital Entrepreneurship Academy)",
-                cert_dea_mentee_year: "Jun 2023 - Present",
+                cert_dea_mentee_year: "Jun 2023 - Sekarang",
                 cert_dea_cyber_title: "Advanced Cybersecurity for Entrepreneurs (Digital Entrepreneurship Academy)",
-                cert_dea_cyber_year: "Jun 2023 - Present",
-                cert5_title: "Many More",
+                cert_dea_cyber_year: "Jun 2023 - Sekarang",
+                cert5_title: "Dan Banyak Lagi",
                 cert5_year: "2024",
                 award_title: "Penghargaan",
-                award1_title: "Employee of The Year Award 2023",
-                award1_description: "Outstanding Achievement at PT Jodamo Exchange. (2024)",
+                award1_title: "Penghargaan Karyawan Terbaik Tahun 2023",
+                award1_description: "Pencapaian Luar Biasa di PT Jodamo Exchange. (2024)",
                 lang_section_title: "Keterampilan Bahasa",
                 lang1_title: "Indonesia",
-                lang1_level: "Native",
-                lang2_title: "English",
-                lang2_level: "B2 - Upper Intermediate",
-                contact_title: "Ayo Bekerja Sama",
-                contact_description: "Saya mengundang Anda untuk memanfaatkan keahlian saya untuk mengubah upaya pemasaran dan operasi bisnis Anda. Apakah Anda perlu mendorong pertumbuhan online, meningkatkan kinerja offline, atau mengimplementasikan strategi berbasis data, saya menawarkan solusi yang disesuaikan yang memberikan hasil yang terukur.",
+                lang1_level: "Penutur Asli",
+                lang2_title: "Inggris",
+                lang2_level: "B2 - Menengah Atas",
+                contact_title: "Mari Bekerja Sama",
+                contact_description: "Saya mengundang Anda untuk memanfaatkan keahlian saya guna mengubah upaya pemasaran dan operasional bisnis Anda. Baik Anda perlu mendorong pertumbuhan online, meningkatkan kinerja offline, maupun menerapkan strategi berbasis data, saya menawarkan solusi khusus yang memberikan hasil terukur.",
                 contact_address: "Jl. Banda no 11, Kota Bandung, Jawa Barat. 40115",
-                footer_text: "&copy; 2024 Mahasin Hadiyatulloh. Semua Hak Dilindungi."
+                footer_text: "&copy; 2024 Mahasin Hadiyatulloh. Hak Cipta Dilindungi."
             }
         };
 
-        let currentLang = 'en'; // Bahasa default diatur ke Bahasa Inggris seperti yang diminta
+        let currentLang = 'en'; // Bahasa default diatur ke Bahasa Inggris
 
         // --- Logika Pergantian Tema ---
         const themeToggleBtn = document.getElementById('theme-toggle');
@@ -2028,7 +2035,6 @@
                 applyTheme(prefersDark ? 'dark' : 'light');
             }
 
-            // Event listener untuk tombol pergantian tema
             if (themeToggleBtn) {
                 themeToggleBtn.addEventListener('click', toggleTheme);
             }
@@ -2036,26 +2042,20 @@
 
 
         // --- Animasi GSAP dan Interaksi ---
-        // Mendaftarkan ScrollToPlugin untuk pengguliran yang mulus
         gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, TextPlugin);
 
-        // Fungsi untuk menginisialisasi animasi konten utama setelah loading selesai
         function initMainContentAnimations() {
             const mainContentWrapper = document.getElementById('main-content-wrapper');
             if (mainContentWrapper) {
-                // Pastikan wrapper konten utama terlihat sebelum menganimasikan anak-anaknya
                 gsap.to(mainContentWrapper, { opacity: 1, visibility: 'visible', duration: 0.5, ease: 'power2.out' });
             }
 
-            // Elemen bagian hero memudar
             const heroTimeline = gsap.timeline();
             heroTimeline.from(".hero-content h1", { opacity: 100, y: 50, duration: 0.4, ease: "power2.out" })
-                        .from(".hero-content .name-subtitle", { opacity: 100, y: 50, duration: 0.35, ease: "power2.out" }, "-=0.2")
+                        .from(".hero-content .name-subtitle", { opacity: 1000, y: 50, duration: 0.35, ease: "power2.out" }, "-=0.2")
                         .from(".hero-content .neumorphic-button", { opacity: 100, scale: 0.8, duration: 0.3, ease: "back.out(1.7)" }, "-=0.15")
                         .from(".hero-image-container img", { opacity: 100, x: 50, duration: 0.4, ease: "power2.out" }, "-=0.3");
 
-
-            // Animasi pengungkapan yang dipicu oleh gulir untuk bagian-bagian
             gsap.utils.toArray('.reveal-container').forEach(container => {
                 const items = container.querySelectorAll('.reveal-item');
                 gsap.from(items, {
@@ -2072,7 +2072,6 @@
                 });
             });
 
-            // Animasi hover umum untuk elemen dengan kelas .gsap-hover-target
             gsap.utils.toArray('.gsap-hover-target').forEach(element => {
                 element.addEventListener('mouseenter', () => {
                     gsap.to(element, {
@@ -2083,10 +2082,8 @@
                     });
                 });
                 element.addEventListener('mouseleave', () => {
-                    // Reset to default shadow based on card type or theme
                     let defaultShadow = '8px 8px 16px var(--card-shadow-light), -8px -8px 16px var(--card-shadow-dark)';
                     if (element.classList.contains('achievement-card')) {
-                        // Use achievement specific shadows (now blue)
                         defaultShadow = '8px 8px 16px var(--achievement-card-shadow-light), -8px -8px 16px var(--achievement-card-shadow-dark)';
                     }
                     gsap.to(element, {
@@ -2098,14 +2095,11 @@
                 });
             });
 
-            // Inisialisasi atau refresh counter animations
-            initCounterAnimations(); // Call this function
+            initCounterAnimations();
         }
 
         function initCounterAnimations() {
-            // Kill existing ScrollTriggers for counters to prevent duplicates and allow re-triggering
             ScrollTrigger.getAll().forEach(st => {
-                // Ensure we only kill triggers specifically attached to counter elements within achievement cards
                 if (st.trigger && st.trigger.classList.contains('counter')) {
                     st.kill();
                 }
@@ -2115,44 +2109,34 @@
                 const targetValue = parseFloat(counterElement.dataset.target);
                 const isPercentage = counterElement.dataset.format === 'percentage';
                 
-                // Reset counter to 0 for re-animation, but preserve original text if not animated
-                if (isPercentage) {
-                    counterElement.innerText = '0.00'; // Start with 0.00 for percentages
-                } else {
-                    counterElement.innerText = '0'; // Start with 0 for whole numbers
-                }
+                let startValue = { val: 0 };
+                counterElement.innerText = isPercentage ? '0.00%' : '0';
 
-                gsap.to(counterElement, {
-                    innerText: targetValue,
-                    duration: 1.5,
+                gsap.to(startValue, {
+                    val: targetValue,
+                    duration: 2, // Slightly increased duration for smoother animation
                     ease: "power1.out",
-                    snap: { innerText: isPercentage ? 0.01 : 1 },
-                    onUpdate: function() {
-                        let displayValue = parseFloat(this.targets()[0].innerText); // Ensure it's a number
-                        if (isPercentage) {
-                            this.targets()[0].innerText = displayValue.toFixed(2) + '%';
-                        } else {
-                            this.targets()[0].innerText = Math.round(displayValue);
-                        }
-                    },
                     scrollTrigger: {
                         trigger: counterElement,
-                        start: "top 80%",
-                        end: "bottom 20%",
+                        start: "top 85%", // Start a bit later
                         toggleActions: "play none none none",
                         once: true,
-                        // No onEnter needed as tween is created directly
+                    },
+                    onUpdate: function() {
+                        if (isPercentage) {
+                            counterElement.innerText = startValue.val.toFixed(2) + '%';
+                        } else {
+                            // Format large numbers with commas
+                            counterElement.innerText = Math.round(startValue.val).toLocaleString('en-US');
+                        }
                     }
                 });
             });
         }
 
-
-        // Pengguliran yang mulus untuk tautan navigasi
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                // Tutup menu seluler jika terbuka
                 const mobileNavMenu = document.getElementById('mobileNavMenu');
                 if (mobileNavMenu && mobileNavMenu.classList.contains('open')) {
                     mobileNavMenu.classList.remove('open');
@@ -2173,7 +2157,7 @@
             });
         });
 
-        // --- Slider Portofolio ---
+        // --- Portfolio Slider Logic ---
         const sliderTrack = document.querySelector('.portfolio-slider-track');
         const slides = gsap.utils.toArray('.project-card-slide');
         const prevButton = document.getElementById('prevSlideButton');
@@ -2183,331 +2167,87 @@
         let currentIndex = 0;
         const numSlides = slides.length;
 
-        // Buat titik-titik slider
-        for (let i = 0; i < numSlides; i++) {
-            const dot = document.createElement('span');
-            dot.classList.add('dot');
-            dot.dataset.index = i;
-            dot.addEventListener('click', () => goToSlide(i));
-            sliderDotsContainer.appendChild(dot);
-        }
-
-        function updateSlider() {
-            const offset = -currentIndex * 100;
-            gsap.to(sliderTrack, {
-                x: offset + '%',
-                duration: 0.5,
-                ease: 'power2.out'
-            });
-
-            // Perbarui titik-titik aktif
-            document.querySelectorAll('.dot').forEach((dot, index) => {
-                if (index === currentIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-
-            // Perbarui status tombol navigasi
-            prevButton.classList.toggle('disabled', currentIndex === 0);
-            nextButton.classList.toggle('disabled', currentIndex === numSlides - 1);
-        }
-
-        function goToSlide(index) {
-            if (index >= 0 && index < numSlides) {
-                currentIndex = index;
-                updateSlider();
+        if (sliderTrack && slides.length > 0) {
+            for (let i = 0; i < numSlides; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                dot.dataset.index = i;
+                dot.addEventListener('click', () => goToSlide(i));
+                sliderDotsContainer.appendChild(dot);
             }
-        }
 
-        prevButton.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                goToSlide(currentIndex - 1);
+            function updateSlider() {
+                const offset = -currentIndex * 100;
+                gsap.to(sliderTrack, {
+                    x: offset + '%',
+                    duration: 0.5,
+                    ease: 'power2.out'
+                });
+
+                document.querySelectorAll('.dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+
+                prevButton.classList.toggle('disabled', currentIndex === 0);
+                nextButton.classList.toggle('disabled', currentIndex === numSlides - 1);
             }
-        });
 
-        nextButton.addEventListener('click', () => {
-            if (currentIndex < numSlides - 1) {
-                goToSlide(currentIndex + 1);
-            }
-        });
-
-        // Inisialisasi slider pada pemuatan
-        updateSlider();
-
-
-        // --- Logika Pengalih Bahasa ---
-        const langIdButton = document.getElementById('lang-id');
-        const langEnButton = document.getElementById('lang-en');
-
-        // Helper function to update text or innerHTML based on content type
-        function updateElement(selector, key, useInnerHTML = false) {
-            const element = document.querySelector(selector);
-            if (element && langContent[currentLang] && langContent[currentLang][key] !== undefined) {
-                if (useInnerHTML) {
-                    element.innerHTML = langContent[currentLang][key];
-                } else {
-                    element.textContent = langContent[currentLang][key];
+            function goToSlide(index) {
+                if (index >= 0 && index < numSlides) {
+                    currentIndex = index;
+                    updateSlider();
                 }
             }
+
+            prevButton.addEventListener('click', () => goToSlide(currentIndex - 1));
+            nextButton.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+            updateSlider();
         }
 
+        // --- Language Switcher Logic ---
         function updateContent(lang) {
-            currentLang = lang; // Set currentLang globally for helper
+            currentLang = lang;
+            document.documentElement.lang = lang;
 
-            // Update header navigation links
-            updateElement('#mainNav li:nth-child(1) a', 'nav_about');
-            updateElement('#mainNav li:nth-child(2) a', 'nav_achievements');
-            updateElement('#mainNav li:nth-child(3) a', 'nav_skills');
-            updateElement('#mainNav li:nth-child(4) a', 'nav_portfolio');
-            updateElement('#mainNav li:nth-child(5) a', 'nav_certs_awards');
-            updateElement('#mainNav li:nth-child(6) a', 'nav_contact');
-            // Update mobile navigation links
-            updateElement('#mobileNavMenu li:nth-child(1) a', 'nav_about');
-            updateElement('#mobileNavMenu li:nth-child(2) a', 'nav_achievements');
-            updateElement('#mobileNavMenu li:nth-child(3) a', 'nav_skills');
-            updateElement('#mobileNavMenu li:nth-child(4) a', 'nav_portfolio');
-            updateElement('#mobileNavMenu li:nth-child(5) a', 'nav_certs_awards');
-            updateElement('#mobileNavMenu li:nth-child(6) a', 'nav_contact');
-
-
-            // Hero Section
-            updateElement('.hero-content h1', 'hero_title');
-            updateElement('.hero-content .neumorphic-button', 'hero_explore_button');
-            updateElement('#about .section-title', 'about_section_title');
-            updateElement('.about-image-card .quote-card blockquote', 'about_quote');
-            updateElement('.about-specialist-title', 'about_specialist_title');
-            updateElement('.about-content p', 'about_description');
-
-            // Vision & Mission Section
-            updateElement('#vision-mission .section-title', 'vm_section_title');
-            updateElement('.vm-content .neumorphic-card:nth-child(1) h3', 'vm_vision_title');
-            updateElement('.vm-content .neumorphic-card:nth-child(1) p', 'vm_vision_description');
-            updateElement('.vm-content .neumorphic-card:nth-child(2) h3', 'vm_mission_title');
-            updateElement('.vm-content .neumorphic-card:nth-child(2) p', 'vm_mission_description');
-
-            // Achievements Section (using innerHTML for counters)
-            updateElement('#experience .section-title', 'achievements_section_title'); 
-            const achievementDataKeys = [
-                { id: 'achievement1', labelKey: 'achievement1_label' },
-                { id: 'achievement2', labelKey: 'achievement2_label' },
-                { id: 'achievement3', labelKey: 'achievement3_label' },
-                { id: 'achievement4', labelKey: 'achievement4_label' },
-                { id: 'achievement5', labelKey: 'achievement5_label' },
-                { id: 'achievement6', labelKey: 'achievement6_label' },
-                { id: 'achievement7', labelKey: 'achievement7_label' },
-                { id: 'achievement8', labelKey: 'achievement8_label' },
-                { id: 'achievement9', labelKey: 'achievement9_label' }
-            ];
-
-            achievementDataKeys.forEach((item) => {
-                const card = document.getElementById(item.id);
-                if (card) {
-                    const labelElement = card.querySelector('.stat-label');
-                    if (labelElement) labelElement.textContent = langContent[lang][item.labelKey];
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (langContent[lang] && langContent[lang][key] !== undefined) {
+                    element.innerHTML = langContent[lang][key];
                 }
             });
 
-
-            // Work Values Section
-            updateElement('#values .section-title', 'values_section_title');
-            updateElement('.values-grid .neumorphic-card:nth-child(1) h3', 'value1_title');
-            updateElement('.values-grid .neumorphic-card:nth-child(1) p', 'value1_description');
-            updateElement('.values-grid .neumorphic-card:nth-child(2) h3', 'value2_title');
-            updateElement('.values-grid .neumorphic-card:nth-child(2) p', 'value2_description');
-            updateElement('.values-grid .neumorphic-card:nth-child(3) h3', 'value3_title');
-            updateElement('.values-grid .neumorphic-card:nth-child(3) p', 'value3_description');
-            updateElement('.values-grid .neumorphic-card:nth-child(4) h3', 'value4_title');
-            updateElement('.values-grid .neumorphic-card:nth-child(4) p', 'value4_description');
-
-            // Personal Skills Section
-            updateElement('#skills .section-title', 'pskills_section_title');
-            updateElement('.skills-grid .skill-item:nth-child(1) p', 'pskill1');
-            updateElement('.skills-grid .skill-item:nth-child(2) p', 'pskill2');
-            updateElement('.skills-grid .skill-item:nth-child(3) p', 'pskill3');
-            updateElement('.skills-grid .skill-item:nth-child(4) p', 'pskill4');
-            updateElement('.skills-grid .skill-item:nth-child(5) p', 'pskill5');
-            updateElement('.skills-grid .skill-item:nth-child(6) p', 'pskill6');
-            updateElement('.skills-grid .skill-item:nth-child(7) p', 'pskill7');
-            updateElement('.skills-grid .skill-item:nth-child(8) p', 'pskill8');
-            updateElement('.skills-grid .skill-item:nth-child(9) p', 'pskill9');
-            updateElement('.skills-grid .skill-item:nth-child(10) p', 'pskill10');
-
-            // Technical Skills Section
-            updateElement('#technical-skills .section-title', 'tskills_section_title');
-            updateElement('.tech-skills-tags span:nth-child(1)', 'tskill1');
-            updateElement('.tech-skills-tags span:nth-child(2)', 'tskill2');
-            updateElement('.tech-skills-tags span:nth-child(3)', 'tskill3');
-            updateElement('.tech-skills-tags span:nth-child(4)', 'tskill4');
-            updateElement('.tech-skills-tags span:nth-child(5)', 'tskill5');
-            updateElement('.tech-skills-tags span:nth-child(6)', 'tskill6');
-            updateElement('.tech-skills-tags span:nth-child(7)', 'tskill7');
-
-            // Portfolio Section
-            updateElement('#portfolio .section-title', 'portfolio_section_title');
-            const projectCardsData = [
-                {
-                    id: 'project1',
-                    imageSrc: 'https://placehold.co/600x400/F0F2F5/007bff?text=Google+Ads+Optimization+Dashboard',
-                    nameKey: 'project1_name',
-                    resultsKey: 'project1_results',
-                    toolsKey: 'project1_tools',
-                    descriptionKey: 'project1_short_description'
-                },
-                {
-                    id: 'project2',
-                    imageSrc: 'https://placehold.co/600x400/F0F2F5/007bff?text=Notion+Marketing+System',
-                    nameKey: 'project2_name',
-                    resultsKey: 'project2_results',
-                    toolsKey: 'project2_tools',
-                    descriptionKey: 'project2_short_description'
-                },
-                {
-                    id: 'project3',
-                    imageSrc: 'https://placehold.co/600x400/F0F2F5/007bff?text=Customer+Journey+Mapping',
-                    nameKey: 'project3_name',
-                    resultsKey: 'project3_results',
-                    toolsKey: 'project3_tools',
-                    descriptionKey: 'project3_short_description'
-                },
-                {
-                    id: 'project4',
-                    imageSrc: 'https://placehold.co/600x400/F0F2F5/007bff?text=Cross+Voucher+Wheels',
-                    nameKey: 'project4_name',
-                    resultsKey: 'project4_results',
-                    toolsKey: 'project4_tools',
-                    descriptionKey: 'project4_short_description'
-                }
-            ];
-
-            projectCardsData.forEach((project, index) => {
-                const projectElement = document.querySelector(`#portfolio .project-card-slide:nth-child(${index + 1}) .project-card`);
-                if (projectElement) {
-                    const imgElement = projectElement.querySelector('.project-image');
-                    if (imgElement) {
-                        imgElement.src = project.imageSrc;
-                        imgElement.alt = (langContent[lang][project.nameKey] ? `[Gambar ${langContent[lang][project.nameKey]}]` : `[Gambar ${project.id}]`);
-                    }
-
-                    const nameElement = projectElement.querySelector(`[data-lang-key="${project.nameKey}"]`);
-                    if (nameElement) nameElement.textContent = langContent[lang][project.nameKey];
-
-                    const resultsElement = projectElement.querySelector(`[data-lang-key="${project.resultsKey}"]`);
-                    if (resultsElement) resultsElement.textContent = langContent[lang][project.resultsKey];
-
-                    const toolsContainer = projectElement.querySelector(`[data-project-tools-container="${project.toolsKey}"]`);
-                    if (toolsContainer) {
-                        toolsContainer.innerHTML = '';
-                        if (langContent[lang] && Array.isArray(langContent[lang][project.toolsKey])) {
-                            langContent[lang][project.toolsKey].forEach(tool => {
-                                const span = document.createElement('span');
-                                span.className = 'project-tool-tag';
-                                span.textContent = tool;
-                                toolsContainer.appendChild(span);
-                            });
-                        }
-                    }
-
-                    const descriptionElement = projectElement.querySelector(`[data-lang-key="${project.descriptionKey}"]`);
-                    if (descriptionElement) descriptionElement.textContent = langContent[lang][project.descriptionKey];
-
-                    const exploreLinkElement = projectElement.querySelector(`[data-lang-key="project_explore_link"]`);
-                    if (exploreLinkElement) {
-                         exploreLinkElement.textContent = langContent[lang]["project_explore_link"];
-                    }
+            document.querySelectorAll('[data-project-tools-container]').forEach(container => {
+                const projectKey = container.getAttribute('data-project-tools-container');
+                 if (langContent[lang] && Array.isArray(langContent[lang][projectKey])) {
+                    container.innerHTML = '';
+                    langContent[lang][projectKey].forEach(tool => {
+                        const span = document.createElement('span');
+                        span.className = 'project-tool-tag';
+                        span.textContent = tool;
+                        container.appendChild(span);
+                    });
                 }
             });
 
-
-            // Company Logos Section
-            updateElement('#company-logos .section-title', 'company_logos_title');
-
-            // Certifications & Awards Section
-            updateElement('#certifications-awards .section-title', 'cert_awards_section_title');
-            updateElement('#certifications-awards .subsection-title:nth-child(4)', 'cert_title'); // Certs title
-            updateElement('.cert-grid .neumorphic-card:nth-child(1) h4', 'cert1_title');
-            updateElement('.cert-grid .neumorphic-card:nth-child(1) p', 'cert1_year');
-            updateElement('.cert-grid .neumorphic-card:nth-child(2) h4', 'cert2_title');
-            updateElement('.cert-grid .neumorphic-card:nth-child(2) p', 'cert2_year');
-            updateElement('.cert-grid .neumorphic-card:nth-child(3) h4', 'cert3_title');
-            updateElement('.cert-grid .neumorphic-card:nth-child(3) p', 'cert3_year');
-            updateElement('.cert-grid .neumorphic-card:nth-child(4) h4', 'cert4_title');
-            updateElement('.cert-grid .neumorphic-card:nth-child(4) p', 'cert4_year');
-            updateElement('.cert-grid .neumorphic-card:nth-child(5) h4', 'cert_coursera_title');
-            updateElement('.cert-grid .neumorphic-card:nth-child(5) p', 'cert_coursera_year');
-            updateElement('.cert-grid .neumorphic-card:nth-child(6) h4', 'cert_revou_title');
-            updateElement('.cert-grid .neumorphic-card:nth-child(6) p', 'cert_revou_year');
-            updateElement('.cert-grid .neumorphic-card:nth-child(7) h4', 'cert_dea_mentee_title');
-            updateElement('.cert-grid .neumorphic-card:nth-child(7) p', 'cert_dea_mentee_year');
-            updateElement('.cert-grid .neumorphic-card:nth-child(8) h4', 'cert_dea_cyber_title');
-            updateElement('.cert-grid .neumorphic-card:nth-child(8) p', 'cert_dea_cyber_year');
-            updateElement('.cert-grid .neumorphic-card:nth-child(9) h4', 'cert5_title');
-            updateElement('.cert-grid .neumorphic-card:nth-child(9) p', 'cert5_year');
-
-            updateElement('#certifications-awards .subsection-title:nth-child(6)', 'award_title'); // Awards title (adjusted nth-child due to dynamic content of achievements above)
-            updateElement('.awards-grid-container .award-card-neumorphic:nth-child(1) h4', 'award1_title');
-            updateElement('.awards-grid-container .award-card-neumorphic:nth-child(1) p', 'award1_description');
-
-            // Language Skills Section
-            updateElement('#languages .section-title', 'lang_section_title');
-            updateElement('.lang-grid .neumorphic-card:nth-child(1) h3', 'lang1_title');
-            updateElement('.lang-grid .neumorphic-card:nth-child(1) p', 'lang1_level');
-            updateElement('.lang-grid .neumorphic-card:nth-child(2) h3', 'lang2_title');
-            updateElement('.lang-grid .neumorphic-card:nth-child(2) p', 'lang2_level');
-
-            // Contact Section
-            updateElement('#contact .section-title', 'contact_title');
-            updateElement('.contact-description', 'contact_description');
-            updateElement('.contact-address', 'contact_address');
-
-            // Footer
-            updateElement('footer p', 'footer_text');
-
-
-            // Update active status for language buttons
             document.querySelectorAll('.lang-button').forEach(button => {
-                if (button.dataset.lang === lang) {
-                    button.classList.add('active');
-                } else {
-                    button.classList.remove('active');
-                }
+                button.classList.toggle('active', button.dataset.lang === lang);
             });
-            document.documentElement.lang = lang; // Update HTML lang attribute
-
-            // Adjust awards layout based on item count
-            const awardsContainer = document.querySelector('.awards-grid-container');
-            if (awardsContainer) {
-                const awardsCount = awardsContainer.children.length;
-                if (awardsCount === 1) {
-                    awardsContainer.classList.add('single-item');
-                } else {
-                    awardsContainer.classList.remove('single-item');
-                }
-            }
-
-            // Re-initialize counter animations after content update
-            initCounterAnimations();
+            
+            initCounterAnimations(); // Re-run counter animation on language switch
         }
 
-        // Event listener untuk tombol bahasa
-        langIdButton.addEventListener('click', () => {
+        document.getElementById('lang-id').addEventListener('click', () => {
             updateContent('id');
-            localStorage.setItem('language', 'id'); // Simpan preferensi bahasa
+            localStorage.setItem('language', 'id');
         });
 
-        langEnButton.addEventListener('click', () => {
+        document.getElementById('lang-en').addEventListener('click', () => {
             updateContent('en');
-            localStorage.setItem('language', 'en'); // Simpan preferensi bahasa
+            localStorage.setItem('language', 'en');
         });
-
-        // Inisialisasi konten saat dimuat berdasarkan bahasa default
-        document.addEventListener('DOMContentLoaded', () => {
-            const initialLang = localStorage.getItem('language') || (navigator.language.startsWith('id') ? 'id' : 'en');
-            updateContent(initialLang);
-        });
-
-        // --- Toggle Menu Seluler ---
+        
+        // --- Mobile Menu Toggle ---
         const mobileMenuButton = document.getElementById('mobileMenuButton');
         const mobileNavMenu = document.getElementById('mobileNavMenu');
 
@@ -2517,44 +2257,31 @@
             });
         }
 
-
-        // Three.js Setup (Moved to the end to ensure DOM is ready)
+        // --- 3D Loading Screen Logic ---
         let scene, camera, renderer, particles, sphere, torus, cube;
         let mouseX = 0, mouseY = 0;
-        let loadingProgress = 0; // Renamed to avoid conflict with GSAP's 'progress'
 
         function init3DLoadingScreen() {
-            // Scene setup
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             renderer = new THREE.WebGLRenderer({ 
                 canvas: document.getElementById('webgl-canvas'),
-                alpha: true, // Allow transparency
+                alpha: true,
                 antialias: true
             });
             
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setClearColor(0x000000, 0); // Transparent background
+            renderer.setClearColor(0x000000, 0);
 
-            // Create particle system
             createParticles();
-            
-            // Create 3D objects
             create3DObjects();
             
-            // Camera position
             camera.position.z = 5;
             
-            // Mouse interaction
             document.addEventListener('mousemove', onMouseMove);
-            
-            // Start animation
             animate3D();
-            
-            // Start loading simulation
             startLoadingSimulation();
 
-            // Handle window resize for 3D canvas
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
@@ -2564,15 +2291,14 @@
 
         function createParticles() {
             const geometry = new THREE.BufferGeometry();
-            const particleCount = 1000;
-            const positions = new Float32Array(particleCount * 3);
-            const colors = new Float32Array(particleCount * 3);
+            const count = 1000;
+            const positions = new Float32Array(count * 3);
+            const colors = new Float32Array(count * 3);
 
-            for (let i = 0; i < particleCount * 3; i += 3) {
+            for (let i = 0; i < count * 3; i += 3) {
                 positions[i] = (Math.random() - 0.5) * 20;
                 positions[i + 1] = (Math.random() - 0.5) * 20;
                 positions[i + 2] = (Math.random() - 0.5) * 20;
-
                 colors[i] = Math.random();
                 colors[i + 1] = Math.random();
                 colors[i + 2] = Math.random();
@@ -2588,83 +2314,43 @@
                 opacity: 0.6,
                 blending: THREE.AdditiveBlending
             });
-
             particles = new THREE.Points(geometry, material);
             scene.add(particles);
         }
 
         function create3DObjects() {
-            // Sphere
-            const sphereGeometry = new THREE.SphereGeometry(0.5, 32, 32);
-            const sphereMaterial = new THREE.MeshBasicMaterial({
-                color: 0x00f5ff,
-                wireframe: true,
-                transparent: true,
-                opacity: 0.3
-            });
-            sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+            const sphereGeo = new THREE.SphereGeometry(0.5, 32, 32);
+            const wireframeMat = { wireframe: true, transparent: true, opacity: 0.3 };
+            sphere = new THREE.Mesh(sphereGeo, new THREE.MeshBasicMaterial({ color: 0x00f5ff, ...wireframeMat }));
             sphere.position.set(-2, 0, 0);
             scene.add(sphere);
 
-            // Torus
-            const torusGeometry = new THREE.TorusGeometry(0.7, 0.2, 16, 100);
-            const torusMaterial = new THREE.MeshBasicMaterial({
-                color: 0xff00f5,
-                wireframe: true,
-                transparent: true,
-                opacity: 0.3
-            });
-            torus = new THREE.Mesh(torusGeometry, torusMaterial);
+            const torusGeo = new THREE.TorusGeometry(0.7, 0.2, 16, 100);
+            torus = new THREE.Mesh(torusGeo, new THREE.MeshBasicMaterial({ color: 0xff00f5, ...wireframeMat }));
             torus.position.set(2, 0, 0);
             scene.add(torus);
 
-            // Cube
-            const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-            const cubeMaterial = new THREE.MeshBasicMaterial({
-                color: 0xf5ff00,
-                wireframe: true,
-                transparent: true,
-                opacity: 0.3
-            });
-            cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+            const cubeGeo = new THREE.BoxGeometry(1, 1, 1);
+            cube = new THREE.Mesh(cubeGeo, new THREE.MeshBasicMaterial({ color: 0xf5ff00, ...wireframeMat }));
             cube.position.set(0, 2, 0);
             scene.add(cube);
         }
 
         function animate3D() {
             requestAnimationFrame(animate3D);
-
-            // Rotate particles
-            particles.rotation.x += 0.001;
-            particles.rotation.y += 0.002;
-
-            // Rotate 3D objects
-            if (sphere) {
-                sphere.rotation.x += 0.01;
-                sphere.rotation.y += 0.01;
-            }
-
-            if (torus) {
-                torus.rotation.x += 0.02;
-                torus.rotation.z += 0.01;
-            }
-
-            if (cube) {
-                cube.rotation.y += 0.015;
-                cube.rotation.z += 0.005;
-            }
-
-            // Mouse interaction
+            if(particles) particles.rotation.y += 0.002;
+            if(sphere) sphere.rotation.y += 0.01;
+            if(torus) torus.rotation.x += 0.02;
+            if(cube) cube.rotation.y += 0.015;
             camera.position.x += (mouseX * 0.001 - camera.position.x) * 0.05;
             camera.position.y += (-mouseY * 0.001 - camera.position.y) * 0.05;
             camera.lookAt(scene.position);
-
             renderer.render(scene, camera);
         }
 
         function onMouseMove(event) {
-            mouseX = (event.clientX - window.innerWidth / 2);
-            mouseY = (event.clientY - window.innerHeight / 2);
+            mouseX = event.clientX - window.innerWidth / 2;
+            mouseY = event.clientY - window.innerHeight / 2;
         }
 
         function startLoadingSimulation() {
@@ -2675,50 +2361,45 @@
             const analyticsLoaded = document.getElementById('analytics-loaded');
             const loadingOverlay = document.getElementById('loading-overlay');
             
-            let currentProgress = 0;
-            let assets = 0, campaigns = 0, analytics = 0;
-
+            let progress = 0;
             const interval = setInterval(() => {
-                currentProgress += Math.random() * 10;
+                progress += Math.random() * 5;
                 
-                if (currentProgress >= 100) {
-                    currentProgress = 100;
+                if (progress >= 100) {
+                    progress = 100;
                     clearInterval(interval);
                     
-                    // Show completion message, then fade out loading overlay
                     setTimeout(() => {
-                        loadingOverlay.innerHTML = '<div class="completion-message">TRUST TO THE FUTURE</div>';
-                        
+                        loadingOverlay.innerHTML = '<div class="completion-message">TRUST THE PROCESS</div>';
                         setTimeout(() => {
                             gsap.to(loadingOverlay, {
                                 duration: 0.8,
                                 opacity: 0, 
                                 visibility: 'hidden',
-                                ease: 'power2.inOut',
-                                onComplete: initMainContentAnimations // Initialize main content animations after loading screen is gone
+                                onComplete: () => {
+                                    loadingOverlay.style.display = 'none';
+                                    initMainContentAnimations();
+                                }
                             });
-                        }, 2000); // Display "WELCOME TO THE FUTURE" for 2 seconds
-                    }, 500); // Delay before showing completion message
+                        }, 1500);
+                    }, 300);
                 }
 
-                // Update progress bar
-                progressBar.style.width = currentProgress + '%';
-                percentage.textContent = Math.floor(currentProgress) + '%';
+                progressBar.style.width = progress + '%';
+                percentage.textContent = Math.floor(progress) + '%';
+                assetsLoaded.textContent = Math.min(150, Math.floor((progress / 100) * 150)) + '/150';
+                campaignsLoaded.textContent = Math.min(300, Math.floor((progress / 100) * 300)) + '/300';
+                analyticsLoaded.textContent = Math.min(100, Math.floor((progress / 100) * 100)) + '/100';
 
-                // Update stats
-                assets = Math.min(150, Math.floor((currentProgress / 100) * 150));
-                campaigns = Math.min(300, Math.floor((currentProgress / 100) * 300));
-                analytics = Math.min(100, Math.floor((currentProgress / 100) * 100));
-
-                assetsLoaded.textContent = assets + '/150';
-                campaignsLoaded.textContent = campaigns + '/300';
-                analyticsLoaded.textContent = analytics + '/100';
-
-            }, 150);
+            }, 100);
         }
 
-        // Initialize 3D loading screen when the window loads
-        window.onload = init3DLoadingScreen;
+        // Initialize content and animations on DOM ready
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialLang = localStorage.getItem('language') || (navigator.language.startsWith('id') ? 'id' : 'en');
+            updateContent(initialLang);
+            init3DLoadingScreen();
+        });
     </script>
 </body>
 </html>

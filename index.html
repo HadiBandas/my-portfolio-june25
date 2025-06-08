@@ -2679,7 +2679,7 @@
             let assets = 0, campaigns = 0, analytics = 0;
 
             const interval = setInterval(() => {
-                currentProgress += Math.random() * 15;
+                currentProgress += Math.random() * 12;
                 
                 if (currentProgress >= 100) {
                     currentProgress = 100;
@@ -2691,7 +2691,7 @@
                         
                         setTimeout(() => {
                             gsap.to(loadingOverlay, {
-                                duration: 0.2,
+                                duration: 0.5,
                                 opacity: 0, 
                                 visibility: 'hidden',
                                 ease: 'power2.inOut',

@@ -2679,10 +2679,10 @@
             let assets = 0, campaigns = 0, analytics = 0;
 
             const interval = setInterval(() => {
-                currentProgress += Math.random() * 2;
+                currentProgress += Math.random() * 15;
                 
                 if (currentProgress >= 100) {
-                    currentProgress = 50;
+                    currentProgress = 100;
                     clearInterval(interval);
                     
                     // Show completion message, then fade out loading overlay
@@ -2691,7 +2691,7 @@
                         
                         setTimeout(() => {
                             gsap.to(loadingOverlay, {
-                                duration: 0.5,
+                                duration: 0.2,
                                 opacity: 0, 
                                 visibility: 'hidden',
                                 ease: 'power2.inOut',

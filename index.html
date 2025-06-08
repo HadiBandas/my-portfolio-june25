@@ -1273,15 +1273,15 @@
             <div class="loading-stats">
                 <div class="stat-item">
                     <div style="font-weight: 600;">Insight</div>
-                    <div id="assets-loaded">0/12</div>
+                    <div id="assets-loaded">0/150</div>
                 </div>
                 <div class="stat-item">
                     <div style="font-weight: 600;">Analyze</div>
-                    <div id="campaigns-loaded">0/8</div>
+                    <div id="campaigns-loaded">0/300</div>
                 </div>
                 <div class="stat-item">
                     <div style="font-weight: 600;">Execute</div>
-                    <div id="analytics-loaded">0/5</div>
+                    <div id="analytics-loaded">0/100</div>
                 </div>
             </div>
         </div>
@@ -2691,7 +2691,7 @@
                         
                         setTimeout(() => {
                             gsap.to(loadingOverlay, {
-                                duration: 0.8,
+                                duration: 0.5,
                                 opacity: 0, 
                                 visibility: 'hidden',
                                 ease: 'power2.inOut',
@@ -2706,13 +2706,13 @@
                 percentage.textContent = Math.floor(currentProgress) + '%';
 
                 // Update stats
-                assets = Math.min(12, Math.floor((currentProgress / 100) * 12));
-                campaigns = Math.min(8, Math.floor((currentProgress / 100) * 8));
-                analytics = Math.min(5, Math.floor((currentProgress / 100) * 5));
+                assets = Math.min(150, Math.floor((currentProgress / 100) * 150));
+                campaigns = Math.min(300, Math.floor((currentProgress / 100) * 300));
+                analytics = Math.min(100, Math.floor((currentProgress / 100) * 100));
 
-                assetsLoaded.textContent = assets + '/12';
-                campaignsLoaded.textContent = campaigns + '/8';
-                analyticsLoaded.textContent = analytics + '/5';
+                assetsLoaded.textContent = assets + '/100';
+                campaignsLoaded.textContent = campaigns + '/300';
+                analyticsLoaded.textContent = analytics + '/100';
 
             }, 150);
         }

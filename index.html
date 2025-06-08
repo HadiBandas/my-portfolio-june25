@@ -1337,7 +1337,7 @@
                     <a href="#about" class="neumorphic-button" data-lang-key="hero_explore_button">Explore Now</a>
                 </div>
                 <div class="hero-image-container reveal-item">
-                    <img ="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/image/Hadi1.webp" alt="[Gambar Foto Profil]" class="profile-img-neumorphic">
+                    <img src="https://raw.githubusercontent.com/HadiBandas/my-portfolio-june25/main/image/image/Hadi1.webp" alt="[Gambar Foto Profil]" class="profile-img-neumorphic">
                 </div>
             </div>
         </section>
@@ -2679,7 +2679,7 @@
             let assets = 0, campaigns = 0, analytics = 0;
 
             const interval = setInterval(() => {
-                currentProgress += Math.random() * 3;
+                currentProgress += Math.random() * 2;
                 
                 if (currentProgress >= 100) {
                     currentProgress = 100;
@@ -2691,7 +2691,7 @@
                         
                         setTimeout(() => {
                             gsap.to(loadingOverlay, {
-                                duration: 0.3,
+                                duration: 0.5,
                                 opacity: 0, 
                                 visibility: 'hidden',
                                 ease: 'power2.inOut',

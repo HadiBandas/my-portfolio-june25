@@ -2681,8 +2681,8 @@
             const interval = setInterval(() => {
                 currentProgress += Math.random() * 4;
                 
-                if (currentProgress >= 100) {
-                    currentProgress = 100;
+                if (currentProgress >= 300) {
+                    currentProgress = 300;
                     clearInterval(interval);
                     
                     // Show completion message, then fade out loading overlay
@@ -2710,7 +2710,7 @@
                 campaigns = Math.min(300, Math.floor((currentProgress / 100) * 300));
                 analytics = Math.min(100, Math.floor((currentProgress / 100) * 100));
 
-                assetsLoaded.textContent = assets + '/100';
+                assetsLoaded.textContent = assets + '/150';
                 campaignsLoaded.textContent = campaigns + '/300';
                 analyticsLoaded.textContent = analytics + '/100';
 
